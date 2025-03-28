@@ -1,103 +1,177 @@
 import Image from "next/image";
+// Removed unused Button import
+// import { SiteFooter } from "@/components/site-footer"; // Removed duplicate footer import (handled in layout)
+import { Gallery4, Gallery4Props } from "@/components/blocks/gallery4"; // Import Gallery4 and Gallery4Props
+import { Spotlight, GridBackground } from "@/components/ui/spotlight";
+import { SplineSceneBasic } from "@/components/blocks/spline-scene-basic-demo"; // Import the new component
+import InViewImagesGrid from "@/components/blocks/in-view-images-grid-demo";
+import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
+
+// Define demoData directly in the page component
+const demoData: Gallery4Props = {
+  title: "Featured Work",
+  description:
+    "Explore our diverse portfolio of video production projects that bring stories and brands to life.",
+  items: [
+    {
+      id: "documentary",
+      title: "Documentary Films",
+      description: "Telling compelling stories through in-depth documentary filmmaking.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-01.jpeg", // Use local image
+    },
+    {
+      id: "brand-film",
+      title: "Brand Films",
+      description: "Crafting cinematic narratives that showcase your brand's essence and values.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-02.jpeg", // Use local image
+    },
+    {
+      id: "event-video",
+      title: "Event Coverage",
+      description: "Capturing the energy and key moments of your events with professional videography.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-05.jpeg", // Use local image
+    },
+    {
+      id: "vfx",
+      title: "Visual Effects (VFX)",
+      description: "Enhancing visuals and adding magic to your projects with creative VFX solutions.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-04.jpeg", // Use local image
+    },
+    {
+      id: "animation",
+      title: "Animation & Motion Graphics",
+      description: "Bringing ideas to life with engaging 2D/3D animation and motion graphics.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-03.jpeg", // Use local image
+    },
+    {
+      id: "corporate",
+      title: "Corporate Videos",
+      description: "Producing professional videos for internal communications, training, and marketing.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-06.jpeg", // Use local image
+    },
+    {
+      id: "music-video",
+      title: "Music Videos",
+      description: "Collaborating with artists to create visually stunning music videos.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-01.jpeg", // Use local image (reusing for demo)
+    },
+    {
+      id: "social-media",
+      title: "Social Media Content",
+      description: "Creating short-form video content optimized for social media platforms.",
+      href: "#", // Placeholder link
+      image: "/images/videography-bts-02.jpeg", // Use local image (reusing for demo)
+    },
+  ],
+};
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // Define brands data for BrandsGrid (using local Adobe logo as placeholder)
+  // Note: Replace these with actual client/partner logos before launch
+  const brands = [
+    {
+      name: "Client 1",
+      logo: "/images/brands/adobe.svg",
+    },
+    {
+      name: "Client 2",
+      logo: "/images/brands/adobe.svg",
+    },
+    {
+      name: "Client 3",
+      logo: "/images/brands/adobe.svg",
+    },
+    {
+      name: "Client 4",
+      logo: "/images/brands/adobe.svg",
+    },
+    {
+      name: "Client 5",
+      logo: "/images/brands/adobe.svg",
+    },
+    {
+      name: "Client 6",
+      logo: "/images/brands/adobe.svg",
+    },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+  // Simplified outer structure, removed grid layout and redundant font style
+  return (
+    <div className="flex flex-col flex-grow p-8 pb-20 sm:p-20">
+      {/* Main content container */}
+      <main id="main-content" className="flex flex-col space-y-16 md:space-y-24 items-center sm:items-start w-full"> 
+        <div className="container mx-auto w-full">
+        {/* Hero Section */}
+        <section className="pt-20 md:pt-32 w-full"> {/* Increased top padding for first section */}
+             <GridBackground />
+                <Spotlight />
+                <div className="p-4 max-w-7xl mx-auto relative z-10 w-full pt-20 md:pt-0">
+        <div className="flex justify-center mb-6">
+          <div className="relative w-20 h-20 md:w-28 md:h-28">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/images/logos/coalbanks-icon.svg"
+              alt="Coalbanks Creative Logo"
+              fill
+              className="object-contain dark:invert" 
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
+        <h1 className="text-5xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+          Seasoned Storytelling<br />by Coalbanks Creative Inc.
+        </h1>
+        <p className="mt-4 mb-16 text-base text-neutral-300 max-w-lg text-center mx-auto">
+          Bringing your vision to life through expert videography and compelling narratives.
+        </p>
+      </div>
+        </section>
+
+        {/* Services Section */}
+        <section className="w-full">
+          <div className="text-center mb-10 md:mb-12">
+            <h2 className="text-3xl md:text-5xl font-semibold text-neutral-800 dark:text-neutral-100">Our Services</h2>
+            <p className="mt-3 text-base text-neutral-600 dark:text-neutral-300 max-w-lg mx-auto">
+              Comprehensive video production solutions for all your creative needs
+            </p>
+          </div>
+          <FeaturesSectionWithHoverEffects />
+        </section>
+
+        {/* Projects Section */}
+        <section className="w-full">
+          <Gallery4 {...demoData} /> {/* Use Gallery4 directly with demoData */}
+        </section>
+
+        {/* Spline Scene Section */}
+        <section className="w-full py-12 md:py-16">
+          <SplineSceneBasic />
+        </section>
+        {/* Removed duplicated InView image grid block */}
+
+        {/* InView Images Grid Section */}
+        <section className="w-full">
+          <div className="mb-10 md:mb-14 flex items-end justify-between">
+            <div className="flex flex-col gap-3">
+              <h2 className="text-3xl md:text-5xl font-semibold text-neutral-800 dark:text-neutral-100">Behind the Scenes</h2>
+              <p className="max-w-lg text-base text-neutral-600 dark:text-neutral-300">
+                A glimpse into our production process and creative workflow
+              </p>
+            </div>
+          </div>
+          <InViewImagesGrid/>
+        </section>
+ 
+        </div> {/* Closing container div */}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      {/* SiteFooter is rendered in layout.tsx */}
     </div>
   );
 }
